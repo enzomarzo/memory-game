@@ -4,12 +4,22 @@ import Login from "./components/login/Login";
 import ErrorPage from "./components/error-page/ErrorPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.scss";
+import Board from "./components/board/Board";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
     errorElement: <ErrorPage />
+  },
+  {
+    path: "/game",
+    element: (
+      <ProtectedRoutes>
+        <Board />
+      </ProtectedRoutes>
+    )
   }
 ]);
 
