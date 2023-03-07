@@ -1,13 +1,17 @@
 import { useState } from "react";
 import Button from "../foundation/button/Button";
 import classes from "./login.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!username) return;
     localStorage.setItem("username", username);
+    navigate("/game");
   };
 
   return (
