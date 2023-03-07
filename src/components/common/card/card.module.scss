@@ -1,0 +1,30 @@
+.card {
+  margin-top: 0px;
+  padding: 0px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+
+  &-front,
+  &-back {
+    transition: transform 1s ease;
+  }
+
+  &-front {
+    transform: rotateY(0deg);
+  }
+
+  &-back {
+    transform: rotateY(180deg);
+  }
+
+  .image {
+    width: 100%;
+    place-self: center;
+    background-position: center;
+    background-size: cover;
+  }
+}
