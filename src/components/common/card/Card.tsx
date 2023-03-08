@@ -16,11 +16,11 @@ function Card({ src, alt, photoId }: ICardProps) {
   useEffect(() => {
     const getCardIds = localStorage.getItem("cardId");
     const savedCardIds = getCardIds && JSON.parse(getCardIds);
-    const permantedFlopped = savedCardIds?.includes(photoId);
-    if (permantedFlopped) {
+    const cardsVisible = savedCardIds?.includes(photoId);
+    if (cardsVisible) {
       setIsFlipped(false);
     }
-    if (state.step === 0 && !permantedFlopped) {
+    if (state.step === 0 && !cardsVisible) {
       setIsFlipped(true);
     }
   }, [state]);
