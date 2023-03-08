@@ -1,3 +1,12 @@
-.cmp-board {
-  margin: 0 auto;
+.board {
+  margin: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+
+  &__card {
+    width: calc(25% - 10px);
+  }
 }
