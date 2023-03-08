@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { Context } from "../../context/Context";
-import Button from "../../foundation/button/Button";
+import { Context } from "../context/Context";
+import Button from "../foundation/button/Button";
 import classes from "./card.module.scss";
 
 interface ICardProps {

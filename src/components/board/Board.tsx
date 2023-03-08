@@ -1,4 +1,4 @@
-import Card from "../common/card/Card";
+import Card from "../card/Card";
 import useFetchPhotos from "../hooks/useFetchPhotos";
 import classes from "./board.module.scss";
 import { Photo } from "pexels";
