@@ -3,7 +3,7 @@ import classes from "./button.module.scss";
 interface IButtonProps {
   additionalCSS?: string;
   children?: React.ReactNode;
-  onClick?: () => void;
+  onClick: () => void;
   type?: "button" | "submit" | "reset";
 }
 
