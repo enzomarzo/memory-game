@@ -16,8 +16,8 @@ const useBoard = () => {
   } = useDataStorage();
   const { time, clearTimer, stopTimer } = useTimer();
   const { state, dispatch } = useContext(Context);
-  let location = useLocation();
-  const isOutsideGamePage = Boolean(location.state?.background);
+  const { pathname } = useLocation();
+  const isOutsideGamePage = !pathname.endsWith("game");
 
   const resetGame = useCallback(() => {
     clearTimer();
@@ -64,6 +64,7 @@ const useBoard = () => {
 
   useEffect(() => {
     if (isOutsideGamePage) {
+      console.log("tru");
       dispatch({ type: "SET_STATE", payload: { isTimerPaused: true } });
     }
   }, [dispatch, isOutsideGamePage]);
@@ -87,6 +88,10 @@ const useBoard = () => {
       validateCards();
     }
   }, [state.step, state.firstCardId, state.secondCardId]);
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
 
   return {
     username,
