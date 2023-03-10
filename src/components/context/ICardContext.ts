@@ -6,8 +6,6 @@ export interface IState {
   firstCardUniqueId: number;
   secondCardId: number;
   secondCardUniqueId: number;
-  cardClicked: number;
-  selectedCard: number;
 }
 
 export type IAction =
@@ -26,13 +24,11 @@ export interface IProvideProps {
 }
 
 export const initialState: IState = {
-  isTimerPaused: true,
+  isTimerPaused: false,
   matchedCards: [],
   step: 0,
   firstCardId: 0,
   firstCardUniqueId: 0,
   secondCardId: 0,
   secondCardUniqueId: 0,
-  cardClicked: 0,
-  selectedCard: 0,
 };
