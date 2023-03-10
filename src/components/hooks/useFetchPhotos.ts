@@ -5,6 +5,7 @@ import {
   ErrorResponse,
   Photo,
 } from "pexels";
+import useDataStorage from "./useDataStorage";
 
 interface CustomResponse extends PhotosWithTotalResults {
   photos: Photo[];
@@ -12,6 +13,8 @@ interface CustomResponse extends PhotosWithTotalResults {
 
 const useFetchPhotos = () => {
   const [photos, setPhotos] = useState<Photo[] | null>(null);
+  const { visibleCards } = useDataStorage();
+
   const API_KEY = import.meta.env.VITE_PEXEL_API_KEY;
   const client = createClient(API_KEY);
 
@@ -34,11 +37,18 @@ const useFetchPhotos = () => {
           const doubledPhotos = [...data.photos, ...data.photos];
           const shuffledPhotos = doubledPhotos.sort(() => Math.random() - 0.5);
           setPhotos(shuffledPhotos);
+          localStorage.setItem("game", JSON.stringify(shuffledPhotos));
         })
         .catch((err) => console.log(err));
     };
 
-    getPhotos();
+    if (!visibleCards.length) {
+      getPhotos();
+    } else {
+      const getGame = localStorage.getItem("game");
+      const savedGame = getGame && JSON.parse(getGame);
+      setPhotos(savedGame);
+    }
   }, []);
 
   return photos;
