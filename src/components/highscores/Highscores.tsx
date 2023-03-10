@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import classes from "./highscores.module.scss";
 import Button from "../foundation/button/Button";
 import { useMemo } from "react";
+import { timeFormatter } from "../../utils/TimeFormatter";
 
 interface IScore {
   username: string;
@@ -13,8 +14,10 @@ const Highscores = () => {
   const { scores } = useDataStorage();
   const navigate = useNavigate();
 
+  console.log(scores);
+
   const sortedScores = useMemo(() => {
-    return scores.sort((a: IScore, b: IScore) => b.time - a.time);
+    return scores.sort((a: IScore, b: IScore) => a.time - b.time);
   }, []);
 
   return (
@@ -32,7 +35,7 @@ const Highscores = () => {
             <div className={classes.highscoresModalList}>
               <div># {i + 1}</div>
               <div>{score.username}</div>
-              <div>{score.time}</div>
+              <div>{timeFormatter(score.time)}</div>
             </div>
           );
         })}
