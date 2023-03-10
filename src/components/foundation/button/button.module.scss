@@ -16,4 +16,18 @@
   &:focus-visible {
     outline: 2px solid $color-button-border;
   }
+
+  &-as-link {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 500;
+    color: $color-text-link;
+    font-size: 1em;
+    text-decoration: inherit;
+    color: $color-text-link;
+    &:hover {
+      color: $color-text-link-hover;
+    }
+  }
 }

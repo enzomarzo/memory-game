@@ -5,14 +5,24 @@ interface IButtonProps {
   children?: React.ReactNode;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
+  buttonAsLink?: boolean;
 }
 
 function Button(props: IButtonProps) {
-  const { additionalCSS, children, type, onClick, ...buttonProps } = props;
+  const {
+    buttonAsLink,
+    additionalCSS,
+    children,
+    type,
+    onClick,
+    ...buttonProps
+  } = props;
 
   return (
     <button
-      className={`${classes.cmpButton} ${additionalCSS || ""}`}
+      className={`${
+        buttonAsLink ? classes.cmpButtonAsLink : classes.cmpButton
+      } ${additionalCSS || ""}`}
       type={type || "button"}
       onClick={onClick}
       {...buttonProps}
