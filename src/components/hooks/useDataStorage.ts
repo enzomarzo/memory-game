@@ -3,7 +3,7 @@ import { useState } from "react";
 const useDataStorage = () => {
   const getData = (data: string) => localStorage.getItem(data);
 
-  const getDataAsArray = (data: string): string | number[] => {
+  const getDataAsArray = (data: string) => {
     const string = getData(data);
     const array = (string && JSON.parse(string)) || [];
     return array;
@@ -11,9 +11,9 @@ const useDataStorage = () => {
 
   const username = getData("username") || "";
   const savedTimer = Number(getData("timer")) || 0;
-  const cardIds = getDataAsArray("cardId");
-  const scores = getDataAsArray("gamesFinished");
   const isGameEnd = getData("isGameFinished");
+  const cardIds: number[] = getDataAsArray("cardId");
+  const scores: string[] = getDataAsArray("gamesFinished");
 
   const [visibleCards, setVisibleCards] = useState(cardIds);
 
