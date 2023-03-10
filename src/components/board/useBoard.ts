@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../context/Context";
 import useDataStorage from "../hooks/useDataStorage";
 import { useTimer } from "../hooks/useTimer";
@@ -13,10 +13,12 @@ const useBoard = () => {
     getIsGameFinished,
     saveIsGameFinished,
     removeIsGameFinished,
+    logOut,
   } = useDataStorage();
   const { time, clearTimer, stopTimer } = useTimer();
   const { state, dispatch } = useContext(Context);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const isOutsideGamePage = !pathname.endsWith("game");
 
   const resetGame = useCallback(() => {
@@ -25,6 +27,12 @@ const useBoard = () => {
     dispatch({ type: "SET_STATE", payload: { matchedCards: [] } });
     removeIsGameFinished();
   }, [clearTimer, clearCards, dispatch, removeIsGameFinished]);
+
+  const onLogOut = () => {
+    resetGame();
+    logOut();
+    navigate("/");
+  };
 
   const saveScore = useCallback(() => {
     const gamesFinished = [...scores, { username, time }];
@@ -64,8 +72,9 @@ const useBoard = () => {
 
   useEffect(() => {
     if (isOutsideGamePage) {
-      console.log("tru");
       dispatch({ type: "SET_STATE", payload: { isTimerPaused: true } });
+    } else {
+      dispatch({ type: "SET_STATE", payload: { isTimerPaused: false } });
     }
   }, [dispatch, isOutsideGamePage]);
 
@@ -89,10 +98,6 @@ const useBoard = () => {
     }
   }, [state.step, state.firstCardId, state.secondCardId]);
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
-
   return {
     username,
     visibleCards,
@@ -100,6 +105,7 @@ const useBoard = () => {
     isGameFinished: getIsGameFinished,
     resetGame,
     onStartNewGame,
+    onLogOut,
   };
 };
 

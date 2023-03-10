@@ -10,8 +10,10 @@ import Button from "../foundation/button/Button";
 
 const Board = () => {
   const photos = useFetchPhotos();
-  const { username, time, isGameFinished, onStartNewGame } = useBoard();
+  const { username, time, isGameFinished, onStartNewGame, onLogOut } =
+    useBoard();
   const timeFormatted = timeFormatter(time);
+  const location = useLocation();
 
   const highScoreLink = (
     <>
@@ -61,7 +63,13 @@ const Board = () => {
           <div>{username}</div>
           <div>Timer: {timeFormatted} </div>
           {highScoreLink}
-          <div>Log out </div>
+          <Button
+            buttonAsLink
+            additionalCSS={classes.boardUserConfigLogout}
+            onClick={onLogOut}
+          >
+            Log out
+          </Button>
         </div>
       </div>
     </div>

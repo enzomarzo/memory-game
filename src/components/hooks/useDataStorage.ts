@@ -26,6 +26,8 @@ const useDataStorage = () => {
     localStorage.removeItem("cardId");
   };
 
+  const logOut = () => localStorage.removeItem("username");
+
   const getCards = () => {
     const getCardIds = localStorage.getItem("cardId");
     let cardIds: number[] = (getCardIds && JSON.parse(getCardIds)) || [];
@@ -42,6 +44,7 @@ const useDataStorage = () => {
     getCards,
     saveIsGameFinished,
     removeIsGameFinished,
+    logOut,
   };
 };
 
