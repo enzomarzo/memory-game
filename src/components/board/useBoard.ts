@@ -37,7 +37,6 @@ const useBoard = () => {
 
   useEffect(() => {
     if (!state.matchedCards.length) {
-      console.log("state initial");
       dispatch({ type: "SET_STATE", payload: { matchedCards: visibleCards } });
     }
   }, []);
@@ -48,8 +47,6 @@ const useBoard = () => {
       localStorage.setItem("cardId", JSON.stringify(uniqueMatches));
     }
   }, [state.matchedCards]);
-
-  console.log(state.matchedCards);
 
   useEffect(() => {
     if (state.matchedCards.length === 16 && !getIsGameFinished) {
@@ -73,7 +70,6 @@ const useBoard = () => {
 
   useEffect(() => {
     const validateCards = () => {
-      console.log("validade", state.firstCardId, state.secondCardId);
       if (state.firstCardId === state.secondCardId) {
         dispatch({ type: "SET_STATE", payload: { step: 0 } });
         dispatch({
