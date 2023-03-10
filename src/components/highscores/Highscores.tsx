@@ -14,8 +14,6 @@ const Highscores = () => {
   const { scores } = useDataStorage();
   const navigate = useNavigate();
 
-  console.log(scores);
-
   const sortedScores = useMemo(() => {
     return scores.sort((a: IScore, b: IScore) => a.time - b.time);
   }, []);
