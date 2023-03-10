@@ -2,7 +2,7 @@ import { useContext } from "react";
 import classes from "./card.module.scss";
 import Button from "../foundation/button/Button";
 import { Context } from "../context/Context";
-import { useCard } from "./useCard";
+import useCard from "./useCard";
 
 interface ICardProps {
   src: string;

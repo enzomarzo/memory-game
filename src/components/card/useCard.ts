@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from "../context/Context";
 import useDataStorage from "../hooks/useDataStorage";
 
-export const useCard = (actualCardUniqueId: number) => {
+const useCard = (actualCardUniqueId: number) => {
   const [isFlipped, setIsFlipped] = useState(true);
   const { state, dispatch } = useContext(Context);
   const { getCards } = useDataStorage();
@@ -36,7 +36,7 @@ export const useCard = (actualCardUniqueId: number) => {
     if (state.step === 0 && !showCards) {
       setIsFlipped(true);
     }
-  }, [getCards]);
+  }, [actualCardUniqueId, getCards, state.step]);
 
   return {
     isFlipped,
@@ -45,3 +45,5 @@ export const useCard = (actualCardUniqueId: number) => {
     secondFlip,
   };
 };
+
+export default useCard;

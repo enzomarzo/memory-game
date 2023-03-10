@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import {
   createClient,
   PhotosWithTotalResults,
@@ -13,6 +13,7 @@ interface CustomResponse extends PhotosWithTotalResults {
 
 const useFetchPhotos = () => {
   const [photos, setPhotos] = useState<Photo[] | null>(null);
+  const [error, setError] = useState();
   const { visibleCards } = useDataStorage();
 
   const API_KEY = import.meta.env.VITE_PEXEL_API_KEY;
@@ -39,7 +40,7 @@ const useFetchPhotos = () => {
           setPhotos(shuffledPhotos);
           localStorage.setItem("game", JSON.stringify(shuffledPhotos));
         })
-        .catch((err) => console.log(err));
+        .catch((err) => setError(err.message));
     };
 
     if (!visibleCards.length) {
@@ -49,9 +50,10 @@ const useFetchPhotos = () => {
       const savedGame = getGame && JSON.parse(getGame);
       setPhotos(savedGame);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return photos;
+  return { photos, error };
 };
 
 export default useFetchPhotos;

@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/login/Login";
 import ErrorPage from "./components/error-page/ErrorPage";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.scss";
 import Board from "./components/board/Board";
 import ProtectedRoutes from "./ProtectedRoutes";

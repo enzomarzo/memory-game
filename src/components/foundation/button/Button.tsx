@@ -15,7 +15,6 @@ function Button(props: IButtonProps) {
     children,
     type,
     onClick,
-    ...buttonProps
   } = props;
 
   return (
@@ -25,7 +24,6 @@ function Button(props: IButtonProps) {
       } ${additionalCSS || ""}`}
       type={type || "button"}
       onClick={onClick}
-      {...buttonProps}
     >
       {children}
     </button>

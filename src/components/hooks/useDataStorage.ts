@@ -4,7 +4,7 @@ const useDataStorage = () => {
   const username = localStorage.getItem("username") || "";
 
   const getCardIds = localStorage.getItem("cardId");
-  let cardIds: number[] = (getCardIds && JSON.parse(getCardIds)) || [];
+  const cardIds: number[] = (getCardIds && JSON.parse(getCardIds)) || [];
   const [visibleCards, setVisibleCards] = useState(cardIds);
 
   const savedTimer = Number(localStorage.getItem("timer")) || 0;
@@ -30,7 +30,7 @@ const useDataStorage = () => {
 
   const getCards = () => {
     const getCardIds = localStorage.getItem("cardId");
-    let cardIds: number[] = (getCardIds && JSON.parse(getCardIds)) || [];
+    const cardIds: number[] = (getCardIds && JSON.parse(getCardIds)) || [];
     return cardIds;
   };
 

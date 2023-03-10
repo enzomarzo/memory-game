@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { Context } from "../context/Context";
 import useDataStorage from "./useDataStorage";
 
-export const useTimer = () => {
+const useTimer = () => {
   const { savedTimer } = useDataStorage();
   const [time, setTime] = useState(savedTimer);
   const { state, dispatch } = useContext(Context);
@@ -15,17 +15,18 @@ export const useTimer = () => {
 
   const stopTimer = useCallback(() => {
     dispatch({ type: "SET_STATE", payload: { isTimerPaused: true } });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (!isTimerPaused) {
       const interval = setInterval(() => {
-        setTime((time) => time + 1);
+        setTime((previousTime) => previousTime + 1);
         localStorage.setItem("timer", time.toString());
       }, 1000);
 
       return () => clearInterval(interval);
     }
+    return undefined;
   }, [isTimerPaused, time]);
 
   return {
@@ -35,3 +36,5 @@ export const useTimer = () => {
     stopTimer,
   };
 };
+
+export default useTimer;

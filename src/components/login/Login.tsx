@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../foundation/button/Button";
 import classes from "./login.module.scss";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -24,15 +24,15 @@ const Login = () => {
       <form className={classes.cmpLoginForm} onSubmit={handleSubmit}>
         <label className={classes.cmpLoginFormLabel} htmlFor="login">
           Username
+          <input
+            className={classes.cmpLoginFormInput}
+            id="login"
+            name="login"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </label>
-        <input
-          className={classes.cmpLoginFormInput}
-          name="login"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-
         <Button additionalCSS={classes.cmpLoginFormButton} type="submit">
           Login
         </Button>

@@ -19,10 +19,7 @@ const reducer = (state: IState, action: IAction) => {
   }
 };
 
-export const Context = createContext<{
-  state: IState;
-  dispatch: React.Dispatch<IAction>;
-}>({
+export const Context = createContext<{state: IState; dispatch: React.Dispatch<IAction>}>({
   state: initialState,
   dispatch: () => null
 });
@@ -31,6 +28,7 @@ export const Provider: React.FC<IProvideProps> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
     <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
   );
 };

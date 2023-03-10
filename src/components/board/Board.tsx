@@ -1,15 +1,15 @@
 import { Photo } from "pexels";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import Card from "../card/Card";
 import useFetchPhotos from "../hooks/useFetchPhotos";
 import classes from "./board.module.scss";
-import { timeFormatter } from "../../utils/TimeFormatter";
+import timeFormatter from "../../utils/TimeFormatter";
 
 import useBoard from "./useBoard";
-import { Link, Outlet, useLocation } from "react-router-dom";
 import Button from "../foundation/button/Button";
 
 const Board = () => {
-  const photos = useFetchPhotos();
+  const { photos } = useFetchPhotos();
   const { username, time, isGameFinished, onStartNewGame, onLogOut } =
     useBoard();
   const timeFormatted = timeFormatter(time);
@@ -25,7 +25,12 @@ const Board = () => {
   );
 
   if (!photos) {
-    return <div>Sorry, we couldn't upload the photos </div>;
+    return (
+      <div>
+        We apologize for the inconvenience, but it seems that we are
+        experiencing difficulties in uploading the photos at the moment
+      </div>
+    );
   }
 
   return (

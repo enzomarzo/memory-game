@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../context/Context";
 import useDataStorage from "../hooks/useDataStorage";
-import { useTimer } from "../hooks/useTimer";
+import useTimer from "../hooks/useTimer";
 
 const useBoard = () => {
   const {
@@ -47,7 +47,7 @@ const useBoard = () => {
     if (!state.matchedCards.length) {
       dispatch({ type: "SET_STATE", payload: { matchedCards: visibleCards } });
     }
-  }, []);
+  }, [dispatch, state.matchedCards.length, visibleCards]);
 
   useEffect(() => {
     if (state.matchedCards.length && state.matchedCards.length % 2 === 0) {
@@ -68,15 +68,16 @@ const useBoard = () => {
     stopTimer,
     saveScore,
     saveIsGameFinished,
+    state.matchedCards.length,
   ]);
 
   useEffect(() => {
-    if (isOutsideGamePage) {
+    if (isOutsideGamePage || getIsGameFinished) {
       dispatch({ type: "SET_STATE", payload: { isTimerPaused: true } });
     } else {
       dispatch({ type: "SET_STATE", payload: { isTimerPaused: false } });
     }
-  }, [dispatch, isOutsideGamePage]);
+  }, [dispatch, getIsGameFinished, isOutsideGamePage]);
 
   useEffect(() => {
     const validateCards = () => {
@@ -96,7 +97,7 @@ const useBoard = () => {
     if (state.step === 2) {
       validateCards();
     }
-  }, [state.step, state.firstCardId, state.secondCardId]);
+  }, [state, dispatch]);
 
   return {
     username,
