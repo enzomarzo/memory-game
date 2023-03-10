@@ -5,6 +5,15 @@ const reducer = (state: IState, action: IAction) => {
   switch (action.type) {
     case "SET_STATE":
       return { ...state, ...action.payload };
+    case "ADD_MATCHED_CARD":
+      return {
+        ...state,
+        matchedCards: [
+          ...state.matchedCards,
+          action.firstMatchedCard,
+          action.secondMatchedCard
+        ]
+      };
     default:
       return state;
   }

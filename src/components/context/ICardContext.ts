@@ -1,22 +1,38 @@
 export interface IState {
-  selectedCard: number;
+  isTimerPaused: boolean;
   matchedCards: number[];
-  isMatch: boolean;
   step: number;
+  firstCardId: number;
+  firstCardUniqueId: number;
+  secondCardId: number;
+  secondCardUniqueId: number;
+  cardClicked: number;
+  selectedCard: number;
 }
 
-export interface IAction {
-  type: string;
-  payload?: any;
-}
+export type IAction =
+  | {
+      type: "SET_STATE";
+      payload: Partial<IState>;
+    }
+  | {
+      type: "ADD_MATCHED_CARD";
+      firstMatchedCard: number;
+      secondMatchedCard: number;
+    };
 
 export interface IProvideProps {
   children: React.ReactNode;
 }
 
 export const initialState: IState = {
-  selectedCard: 0,
-  isMatch: false,
+  isTimerPaused: true,
   matchedCards: [],
   step: 0,
+  firstCardId: 0,
+  firstCardUniqueId: 0,
+  secondCardId: 0,
+  secondCardUniqueId: 0,
+  cardClicked: 0,
+  selectedCard: 0,
 };
