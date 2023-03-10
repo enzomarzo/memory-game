@@ -10,7 +10,7 @@ const useBoard = () => {
     username,
     visibleCards,
     clearCards,
-    getIsGameFinished,
+    isGameEnd,
     saveIsGameFinished,
     removeIsGameFinished,
     logOut,
@@ -57,13 +57,13 @@ const useBoard = () => {
   }, [state.matchedCards]);
 
   useEffect(() => {
-    if (state.matchedCards.length === 16 && !getIsGameFinished) {
+    if (state.matchedCards.length === 16 && !isGameEnd) {
       stopTimer();
       saveScore();
       saveIsGameFinished();
     }
   }, [
-    getIsGameFinished,
+    isGameEnd,
     visibleCards,
     stopTimer,
     saveScore,
@@ -72,12 +72,12 @@ const useBoard = () => {
   ]);
 
   useEffect(() => {
-    if (isOutsideGamePage || getIsGameFinished) {
+    if (isOutsideGamePage || isGameEnd) {
       dispatch({ type: "SET_STATE", payload: { isTimerPaused: true } });
     } else {
       dispatch({ type: "SET_STATE", payload: { isTimerPaused: false } });
     }
-  }, [dispatch, getIsGameFinished, isOutsideGamePage]);
+  }, [dispatch, isGameEnd, isOutsideGamePage]);
 
   useEffect(() => {
     const validateCards = () => {
@@ -103,7 +103,7 @@ const useBoard = () => {
     username,
     visibleCards,
     time,
-    isGameFinished: getIsGameFinished,
+    isGameFinished: isGameEnd,
     resetGame,
     onStartNewGame,
     onLogOut,

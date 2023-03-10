@@ -1,22 +1,26 @@
 import { useState } from "react";
 
 const useDataStorage = () => {
-  const username = localStorage.getItem("username") || "";
+  const getData = (data: string) => localStorage.getItem(data);
 
-  const getCardIds = localStorage.getItem("cardId");
-  const cardIds: number[] = (getCardIds && JSON.parse(getCardIds)) || [];
+  const getDataAsArray = (data: string): string | number[] => {
+    const string = getData(data);
+    const array = (string && JSON.parse(string)) || [];
+    return array;
+  };
+
+  const username = getData("username") || "";
+  const savedTimer = Number(getData("timer")) || 0;
+  const cardIds = getDataAsArray("cardId");
+  const scores = getDataAsArray("gamesFinished");
+  const isGameEnd = getData("isGameFinished");
+
   const [visibleCards, setVisibleCards] = useState(cardIds);
-
-  const savedTimer = Number(localStorage.getItem("timer")) || 0;
-
-  const getScores = localStorage.getItem("gamesFinished");
-  const scores = (getScores && JSON.parse(getScores)) || [];
-
-  const getIsGameFinished = localStorage.getItem("isGameFinished");
 
   const saveIsGameFinished = () => {
     localStorage.setItem("isGameFinished", "true");
   };
+
   const removeIsGameFinished = () => {
     localStorage.removeItem("isGameFinished");
   };
@@ -29,14 +33,13 @@ const useDataStorage = () => {
   const logOut = () => localStorage.removeItem("username");
 
   const getCards = () => {
-    const getCardIds = localStorage.getItem("cardId");
-    const cardIds: number[] = (getCardIds && JSON.parse(getCardIds)) || [];
-    return cardIds;
+    const cards = getDataAsArray("cardId");
+    return cards;
   };
 
   return {
     username,
-    getIsGameFinished,
+    isGameEnd,
     visibleCards,
     savedTimer,
     scores,
