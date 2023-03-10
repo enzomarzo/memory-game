@@ -7,6 +7,7 @@ import "./index.scss";
 import Board from "./components/board/Board";
 import ProtectedRoutes from "./ProtectedRoutes";
 import { Provider } from "./components/context/Context";
+import Highscores from "./components/highscores/Highscores";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,13 @@ const router = createBrowserRouter([
       <ProtectedRoutes>
         <Board />
       </ProtectedRoutes>
-    )
+    ),
+    children: [
+      {
+        path: "/game/highscores",
+        element: <Highscores />
+      }
+    ]
   }
 ]);
 

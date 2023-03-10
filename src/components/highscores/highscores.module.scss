@@ -1,0 +1,38 @@
+.highscores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  &__modal {
+    padding: 25px;
+    background-color: white;
+    position: relative;
+    width: 350px;
+    height: 350px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    overflow-y: auto;
+
+    &-button {
+      float: right;
+    }
+
+    &__list {
+      display: grid;
+      grid-template-columns: 1fr 3fr 1fr;
+      justify-items: center;
+      align-items: center;
+      padding: 5px 10px;
+      border-bottom: 1px solid #ddd;
+      &:first-child {
+        font-weight: bold;
+      }
+    }
+  }
+}
