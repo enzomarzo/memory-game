@@ -43,6 +43,7 @@ const useBoard = () => {
     resetGame();
   };
 
+  // If the user reloads the page, the matched cards need to be saved in the state
   useEffect(() => {
     if (!state.matchedCards.length) {
       dispatch({ type: "SET_STATE", payload: { matchedCards: visibleCards } });
@@ -50,21 +51,23 @@ const useBoard = () => {
   }, [dispatch, state.matchedCards.length, visibleCards]);
 
   useEffect(() => {
-    if (state.matchedCards.length && state.matchedCards.length % 2 === 0) {
+    const matchesLength = state.matchedCards.length;
+    const shouldSaveMatchedCards = matchesLength && matchesLength % 2 === 0;
+    if (shouldSaveMatchedCards) {
       const uniqueMatches = [...new Set(state.matchedCards)];
       localStorage.setItem("cardId", JSON.stringify(uniqueMatches));
     }
   }, [state.matchedCards]);
 
   useEffect(() => {
-    if (state.matchedCards.length === 16 && !isGameEnd) {
+    const shouldFinishGame = state.matchedCards.length === 16 && !isGameEnd;
+    if (shouldFinishGame) {
       stopTimer();
       saveScore();
       saveIsGameFinished();
     }
   }, [
     isGameEnd,
-    visibleCards,
     stopTimer,
     saveScore,
     saveIsGameFinished,
@@ -72,7 +75,8 @@ const useBoard = () => {
   ]);
 
   useEffect(() => {
-    if (isOutsideGamePage || isGameEnd) {
+    const shouldStopTimer = isOutsideGamePage || isGameEnd;
+    if (shouldStopTimer) {
       dispatch({ type: "SET_STATE", payload: { isTimerPaused: true } });
     } else {
       dispatch({ type: "SET_STATE", payload: { isTimerPaused: false } });
