@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import classes from "./card.module.scss";
 import Button from "../foundation/button/Button";
 import { Context } from "../context/Context";
@@ -51,4 +51,4 @@ function Card({ src, alt, photoId, cardUniqueId }: ICardProps) {
   );
 }
 
-export default Card;
+export default memo(Card);
