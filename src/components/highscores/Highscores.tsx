@@ -1,21 +1,16 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import useDataStorage from "../hooks/useDataStorage";
+import useDataStorage, { IScore } from "../hooks/useDataStorage";
 import classes from "./highscores.module.scss";
 import Button from "../foundation/button/Button";
 import timeFormatter from "../../utils/TimeFormatter";
-
-interface IScore {
-  username: string;
-  time: number;
-}
 
 const Highscores = () => {
   const { scores } = useDataStorage();
   const navigate = useNavigate();
 
   const sortedScores = useMemo(
-    () => scores.sort((a: IScore, b: IScore) => a.time - b.time),
+    () => scores.sort((a: IScore, b: IScore): number => a.time - b.time),
     [scores]
   );
 

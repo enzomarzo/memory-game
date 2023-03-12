@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+export interface IScore {
+  username: string;
+  time: number;
+}
+
 const useDataStorage = () => {
   const getData = (data: string) => localStorage.getItem(data);
 
@@ -13,7 +18,7 @@ const useDataStorage = () => {
   const savedTimer = Number(getData("timer")) || 0;
   const isGameEnd = getData("isGameFinished");
   const cardIds: number[] = getDataAsArray("cardId");
-  const scores: string[] = getDataAsArray("gamesFinished");
+  const scores: IScore[] = getDataAsArray("gamesFinished");
 
   const [visibleCards, setVisibleCards] = useState(cardIds);
 
