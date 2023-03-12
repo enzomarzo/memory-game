@@ -29,3 +29,7 @@ This project is built using **React 18**, **Vite 4**, **TypeScript**, and **SASS
 - Saves the user, game, and score to local storage so that the game can be resumed after the page is closed.
 - Creates a ranking for every game for every user.
 - Makes use of the Context API so that different data between board, cards, and score does not need to be handled.
+
+### Demo Picture
+
+![image](https://user-images.githubusercontent.com/59425374/224563887-63818ccd-af1f-4abb-a112-dc041e7de6c4.png)
