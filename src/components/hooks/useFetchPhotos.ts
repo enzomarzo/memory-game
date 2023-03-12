@@ -14,6 +14,7 @@ interface CustomResponse extends PhotosWithTotalResults {
 const useFetchPhotos = () => {
   const [photos, setPhotos] = useState<Photo[] | null>(null);
   const [error, setError] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const { visibleCards } = useDataStorage();
 
   const API_KEY = import.meta.env.VITE_PEXEL_API_KEY;
@@ -26,6 +27,7 @@ const useFetchPhotos = () => {
 
   useEffect(() => {
     const getPhotos = () => {
+      setIsLoading(true);
       client.photos
         .search({
           query,
@@ -40,7 +42,10 @@ const useFetchPhotos = () => {
           setPhotos(shuffledPhotos);
           localStorage.setItem("game", JSON.stringify(shuffledPhotos));
         })
-        .catch((err) => setError(err.message));
+        .catch((err) => setError(err.message))
+        .finally(() => {
+          setIsLoading(false);
+        });
     };
 
     if (!visibleCards.length) {
@@ -53,7 +58,7 @@ const useFetchPhotos = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { photos, error };
+  return { photos, error, isLoading };
 };
 
 export default useFetchPhotos;

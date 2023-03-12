@@ -39,4 +39,25 @@
       gap: 20px;
     }
   }
+
+  &__spinner {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    border: 0.25em solid rgba(0, 0, 0, 0.1);
+    border-top-color: #3498db;
+    animation: spin 1s ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
