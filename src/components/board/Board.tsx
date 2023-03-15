@@ -52,7 +52,7 @@ const Board = () => {
                   <Card
                     cardUniqueId={cardUniqueId}
                     photoId={photo.id}
-                    src={photo.src.small}
+                    src={photo.src.medium}
                     alt={photo.alt || "pexels random image"}
                   />
                 </div>

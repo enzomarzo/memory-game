@@ -23,7 +23,7 @@ const useFetchPhotos = () => {
   const numberOfPairs = 8;
   const query = "people";
   const orientation = "square";
-  const size = "small";
+  const size = "medium";
 
   useEffect(() => {
     const getPhotos = () => {
