@@ -3,10 +3,10 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build --base=./",
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "lint:fix": "eslint src --ext .js --fix",
-    "preview": "vite preview",
+    "preview": "vite preview --port 8080",
     "test": "jest --watch"
   },
   "dependencies": {
