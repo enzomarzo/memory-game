@@ -9,27 +9,32 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import { Provider } from "./components/context/Context";
 import Highscores from "./components/highscores/Highscores";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Login />,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "/game",
+      element: (
+        <ProtectedRoutes>
+          <Board />
+        </ProtectedRoutes>
+      ),
+      children: [
+        {
+          path: "/game/highscores",
+          element: <Highscores />
+        }
+      ]
+    }
+  ],
   {
-    path: "/",
-    element: <Login />,
-    errorElement: <ErrorPage />
-  },
-  {
-    path: "/game",
-    element: (
-      <ProtectedRoutes>
-        <Board />
-      </ProtectedRoutes>
-    ),
-    children: [
-      {
-        path: "/game/highscores",
-        element: <Highscores />
-      }
-    ]
+    basename: "/memory-game"
   }
-]);
+);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

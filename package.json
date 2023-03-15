@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --base=./",
+    "build": "tsc && vite build",
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "lint:fix": "eslint src --ext .js --fix",
     "preview": "vite preview --port 8080",
