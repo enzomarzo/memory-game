@@ -43,7 +43,7 @@ function Card({ src, alt, photoId, cardUniqueId }: ICardProps) {
       <div className={isFlipped ? classes.cardFront : classes.cardBack}>
         <img
           className={classes.image}
-          src={isFlipped ? "/backflipped.jpg" : src}
+          src={isFlipped ? "backflipped.jpg" : src}
           alt={isFlipped ? "backflipped card" : alt}
         />
       </div>
