@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "../foundation/button/Button";
-import classes from "./login.module.scss";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../foundation/button/Button';
+import classes from './login.module.scss';
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!username) return;
-    localStorage.setItem("username", username);
-    navigate("/game");
+    localStorage.setItem('username', username);
+    navigate('/game');
   };
 
   return (
@@ -24,15 +24,16 @@ const Login = () => {
       <form className={classes.cmpLoginForm} onSubmit={handleSubmit}>
         <label className={classes.cmpLoginFormLabel} htmlFor="login">
           Username
-          <input
-            className={classes.cmpLoginFormInput}
-            id="login"
-            name="login"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
         </label>
+        <input
+          className={classes.cmpLoginFormInput}
+          id="login"
+          name="login"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
         <Button additionalCSS={classes.cmpLoginFormButton} type="submit">
           Login
         </Button>
