@@ -30,7 +30,7 @@ module.exports = {
     "react/require-default-props": 0,
     "react/button-has-type": 0,
     "react/react-in-jsx-scope": 0,
-    "import/no-extraneous-dependencies": ["error", { devDependencies: trues }],
+    "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
     "react/function-component-definition": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
