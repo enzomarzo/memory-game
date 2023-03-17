@@ -1,3 +1,4 @@
+import { IoPersonOutline, IoTimerOutline } from "react-icons/io5";
 import { Photo } from "pexels";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import Card from "../card/Card";
@@ -60,8 +61,8 @@ const Board = () => {
             })}
           </div>
           <div className={classes.boardUserConfig}>
-            <div>{username}</div>
-            <div>Timer: {timeFormatted} </div>
+            <div className={classes.boardUserConfigUser}><IoPersonOutline size="1.1em" /> {username}</div>
+            <div className={classes.boardUserConfigTimer}><IoTimerOutline size="1.1em" /> {timeFormatted} </div>
             {highScoreLink}
             <Button
               buttonAsLink
