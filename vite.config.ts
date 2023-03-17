@@ -5,7 +5,7 @@ import replace from "@rollup/plugin-replace";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/memory-game/",
+  base: "/memory-game",
   plugins: [
     react(),
     typescript({
