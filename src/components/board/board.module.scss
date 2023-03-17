@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 4fr 1fr;
   grid-gap: 10px;
+  max-width: 1200px;
 
   &__game {
     margin: 30px;
